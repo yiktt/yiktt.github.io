@@ -1,0 +1,249 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Cloudflare Workers 反代使用 GitHub 仓库搭建图床 | Yiktt&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://1e1.top/favicon.ico?v=1662440965664">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://1e1.top/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Yiktt&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1662440965664" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Cloudflare Workers 反代使用 GitHub 仓库搭建图床
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2022-08-16 ·
+                    </time>
+                    
+                        <a href="https://1e1.top/tag/9DQbsHuv0/" class="post-tags">
+                            # 技术
+                        </a>
+                    
+                        <a href="https://1e1.top/tag/ScZMYVKKY/" class="post-tags">
+                            # cloudflare
+                        </a>
+                    
+                        <a href="https://1e1.top/tag/PG9t_riUNo/" class="post-tags">
+                            # github
+                        </a>
+                    
+                        <a href="https://1e1.top/tag/QAV_bpG2Rr/" class="post-tags">
+                            # 图床
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>Cloudflare Workers 反代使用 GitHub 仓库搭建图床<br>
+CF创建并开启Workers这里不再赘述了，如果不会还请自行搜索😘</p>
+<!-- more -->
+<h2 id="1-cloudflare-创建-workers">1  Cloudflare 创建 Workers</h2>
+<figure data-type="image" tabindex="1"><img src="https://img.1e1.top/picture/1e1top/22816/20220816220023.png" alt="01" loading="lazy"></figure>
+<h2 id="2-编写反代用的-worker-代码">2  编写反代用的 Worker 代码</h2>
+<p>Cloudflare Worker 中的代码用 JS 写就行，同时还有很多现成的好用的方法，具体的学习请参照官方文档：Cloudflare Workers documentation<br>
+我这里要实现反代功能，那么就只需要将来源链接中的域名修改成 raw.githubusercontent.com，接着访问一下 GitHub 文件的内容并返回即可，直接上具体实现的代码：</p>
+<pre><code class="language-javascript">addEventListener(&quot;fetch&quot;, event =&gt; {
+  event.respondWith(handleRequest(event.request))
+})
+
+async function handleRequest(request) {
+  // Cloudflare Workers 分配的域名
+  cf_worker_host = &quot;img.yiktt.workers.dev&quot;;
+  // 自定义的域名
+  origin_host = &quot;img.1e1.top&quot;;
+  // GitHub 仓库文件地址
+  github_host = &quot;raw.githubusercontent.com/yiktt/imgs/master&quot;;
+  // 替换 2 次以同时兼容 Worker 来源和域名来源
+  url = request.url.replace(cf_worker_host, github_host).replace(origin_host, github_host);
+  return fetch(url);
+}
+</code></pre>
+<p>注意上面我除了 Cloudflare Workers 分配的域名我还添加了自定义域名，你可以自行决定是否加上。<br>
+确定没问题之后点击保存并部署即可。</p>
+<h2 id="3-结束-测试">3  结束  测试</h2>
+<p>部署完成后，你已经可以通过 Cloudflare Workers 分配给你的域名访问你 GitHub 仓库里的图片了，而且默认就是套了 CF 的 CDN 的，在境内也能访问顶多就是速度会慢一点，如图：<br>
+<img src="https://img.1e1.top/picture/19XvO7el_400x400.jpg" alt="02" loading="lazy"></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+
+        
+            <span id="/post/cloudflare-workers-fan-dai-shi-yong-github-cang-ku-da-jian-tu-chuang/" class="leancloud_visitors" data-flag-title="Cloudflare Workers 反代使用 GitHub 仓库搭建图床">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'F7RpmMob27GR0XAomdh6DHZS-MdYXbMMI',
+		appKey: 'fbrCCI8euT4cef9OXG71Y6mJ',
+		avatar: '',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: 'Just Go Go',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">这个世界会好的</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/yiktt" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="#" target="_blank">Yiktt</a>
+<p class="titma animated"><span id="span">本站已运行: 00天0小时00分00秒</span></p>
+<script type="text/javascript">
+				runtime();
+				function runtime() {
+					// 初始时间，日/月/年 时:分:秒
+					X = new Date("8/16/2022 00:00:00");
+					Y = new Date();
+					T = (Y.getTime() - X.getTime());
+					M = 24 * 60 * 60 * 1000;
+					a = T / M;
+					A = Math.floor(a);
+					b = (a - A) * 24;
+					B = Math.floor(b);
+					c = (b - B) * 60;
+					C = Math.floor((b - B) * 60);
+					D = Math.floor((c - C) * 60);
+					//信息写入到DIV中
+					span.innerHTML = "本站已运行: " + A + "天" + B + "小时" + C + "分" + D + "秒"
+				}
+				setInterval(runtime, 1000);
+			</script>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://1e1.top/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

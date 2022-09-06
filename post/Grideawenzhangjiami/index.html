@@ -1,0 +1,267 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Gridea文章加密（小白方法） | Yiktt&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://1e1.top/favicon.ico?v=1662440965664">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://1e1.top/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Yiktt&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1662440965664" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Gridea文章加密（小白方法）
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2022-09-03 ·
+                    </time>
+                    
+                        <a href="https://1e1.top/tag/9DQbsHuv0/" class="post-tags">
+                            # 技术
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>Gridea文章加密</p>
+<!-- more -->
+<h2 id="加密测试">加密测试</h2>
+<p>代码粘贴于gridea客户端写文章页面的正文部分顶端，请输入密码也可以改成你这篇文章的密码提示，yiktt改成你需要的密码<br>
+19960319是次数，如果有人输入密码超过这个次数就会进入页面<br>
+不过我觉得数字设大一点一般看文的不会有这个耐心或技能破解吧</p>
+<blockquote>
+<p>严重BUG：用户打开加密文章页面右键查看网站源代码或浏览器地址栏输入 view-source:https://1e1.top/文章链接 就能查看到页面中的js代码获取到密码</p>
+</blockquote>
+<pre><code class="language-javascript">&lt;script language = JavaScript&gt; function password() {
+
+    var testV = 1;
+
+    var pass1 = prompt('请输入密码','');
+
+    var passwordforthisarticle = &quot;yiktt&quot;;
+
+    var inputtimemax = 19960319;
+
+    while (testV &lt; inputtimemax) {
+
+    if (!pass1)
+
+    history.go(-1);
+
+    if (pass1 == passwordforthisarticle) {
+
+    break;
+
+    }
+
+    testV+=1;
+
+    var pass1 =
+
+    prompt('密码错误!');
+
+    }
+
+    if (pass1!= passwordforthisarticle &amp; testV == inputtimemax)  
+
+    history.go(-1);
+
+    return &quot; &quot;;
+
+    }
+
+    document.write(password());
+
+&lt;/script&gt;
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://cdn.biubiu001.com/p/ping/question/img/5bfb006220ecffc118fa8c66ba705665.png" alt="" loading="lazy"></figure>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://1e1.top/post/wang-zhan-jian-kong-mian-ban-ji-yu-uptimerobot/" class="post-title gt-a-link">
+                    网站监控面板(基于uptimerobot)
+                </a>
+            </div>
+        
+
+        
+            <span id="/post/Grideawenzhangjiami/" class="leancloud_visitors" data-flag-title="Gridea文章加密（小白方法）">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'F7RpmMob27GR0XAomdh6DHZS-MdYXbMMI',
+		appKey: 'fbrCCI8euT4cef9OXG71Y6mJ',
+		avatar: '',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: 'Just Go Go',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">这个世界会好的</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/yiktt" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="#" target="_blank">Yiktt</a>
+<p class="titma animated"><span id="span">本站已运行: 00天0小时00分00秒</span></p>
+<script type="text/javascript">
+				runtime();
+				function runtime() {
+					// 初始时间，日/月/年 时:分:秒
+					X = new Date("8/16/2022 00:00:00");
+					Y = new Date();
+					T = (Y.getTime() - X.getTime());
+					M = 24 * 60 * 60 * 1000;
+					a = T / M;
+					A = Math.floor(a);
+					b = (a - A) * 24;
+					B = Math.floor(b);
+					c = (b - B) * 60;
+					C = Math.floor((b - B) * 60);
+					D = Math.floor((c - C) * 60);
+					//信息写入到DIV中
+					span.innerHTML = "本站已运行: " + A + "天" + B + "小时" + C + "分" + D + "秒"
+				}
+				setInterval(runtime, 1000);
+			</script>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://1e1.top/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

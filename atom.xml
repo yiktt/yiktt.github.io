@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://1e1.top</id>
+    <title>Yiktt&apos;s Blog</title>
+    <updated>2022-09-06T05:15:42.830Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://1e1.top"/>
+    <link rel="self" href="https://1e1.top/atom.xml"/>
+    <subtitle>这个世界会好的</subtitle>
+    <logo>https://1e1.top/images/avatar.png</logo>
+    <icon>https://1e1.top/favicon.ico</icon>
+    <rights>All rights reserved 2022, Yiktt&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Gridea文章加密（小白方法）]]></title>
+        <id>https://1e1.top/post/Grideawenzhangjiami/</id>
+        <link href="https://1e1.top/post/Grideawenzhangjiami/">
+        </link>
+        <updated>2022-09-03T02:11:52.000Z</updated>
+        <summary type="html"><![CDATA[<p>Gridea文章加密</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Gridea文章加密</p>
+<!-- more -->
+<h2 id="加密测试">加密测试</h2>
+<p>代码粘贴于gridea客户端写文章页面的正文部分顶端，请输入密码也可以改成你这篇文章的密码提示，yiktt改成你需要的密码<br>
+19960319是次数，如果有人输入密码超过这个次数就会进入页面<br>
+不过我觉得数字设大一点一般看文的不会有这个耐心或技能破解吧</p>
+<blockquote>
+<p>严重BUG：用户打开加密文章页面右键查看网站源代码或浏览器地址栏输入 view-source:https://1e1.top/文章链接 就能查看到页面中的js代码获取到密码</p>
+</blockquote>
+<pre><code class="language-javascript">&lt;script language = JavaScript&gt; function password() {
+
+    var testV = 1;
+
+    var pass1 = prompt('请输入密码','');
+
+    var passwordforthisarticle = &quot;yiktt&quot;;
+
+    var inputtimemax = 19960319;
+
+    while (testV &lt; inputtimemax) {
+
+    if (!pass1)
+
+    history.go(-1);
+
+    if (pass1 == passwordforthisarticle) {
+
+    break;
+
+    }
+
+    testV+=1;
+
+    var pass1 =
+
+    prompt('密码错误!');
+
+    }
+
+    if (pass1!= passwordforthisarticle &amp; testV == inputtimemax)  
+
+    history.go(-1);
+
+    return &quot; &quot;;
+
+    }
+
+    document.write(password());
+
+&lt;/script&gt;
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://cdn.biubiu001.com/p/ping/question/img/5bfb006220ecffc118fa8c66ba705665.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[网站监控面板(基于uptimerobot)]]></title>
+        <id>https://1e1.top/post/wang-zhan-jian-kong-mian-ban-ji-yu-uptimerobot/</id>
+        <link href="https://1e1.top/post/wang-zhan-jian-kong-mian-ban-ji-yu-uptimerobot/">
+        </link>
+        <updated>2022-08-25T08:16:10.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="搭建一个属于自己的网站监控面板">搭建一个属于自己的网站监控面板</h1>
+]]></summary>
+        <content type="html"><![CDATA[<h1 id="搭建一个属于自己的网站监控面板">搭建一个属于自己的网站监控面板</h1>
+<!-- more -->
+<blockquote>
+<h2 id="示例-status1e1top">示例: <a href="https://status.1e1.top">status.1e1.top</a></h2>
+</blockquote>
+<figure data-type="image" tabindex="1"><img src="https://img.1e1.top/picture/1e1top/22825/20220825160733.png" alt="" loading="lazy"></figure>
+<h1 id="事先准备">事先准备</h1>
+<ul>
+<li>您需要先到 <a href="https://uptimerobot.com/">UptimeRobot</a> 添加站点监控，并在 My Settings 页面获取 API Key</li>
+<li>您需要拥有一个网站空间，常见的 Nginx / PHP 等空间即可，甚至是阿里云的 OSS 等纯静态空间也行，或者上传至Github利用CF Pages搭建</li>
+</ul>
+<h1 id="部署">部署</h1>
+<ul>
+<li>下载并解压缩： <a href="https://github.com/yiktt/uptime-status/archive/refs/tags/V2.0.zip">uptime-status.zip</a></li>
+</ul>
+<ul>
+<li>修改 config.js 文件：
+<ul>
+<li>SiteName: 要显示的网站名称</li>
+<li>ApiKeys: 从 UptimeRobot 获取的 API Key，支持 Monitor-Specific API Keys 和 Read-Only API Key</li>
+<li>CountDays: 要显示的日志天数，建议 60 或 90，显示效果比较好</li>
+<li>ShowLink: 是否显示站点链接</li>
+<li>Navi: 导航栏的菜单列表</li>
+</ul>
+</li>
+<li>将所有文件上传到网站空间</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[这个世界会好吗]]></title>
+        <id>https://1e1.top/post/lizhi/</id>
+        <link href="https://1e1.top/post/lizhi/">
+        </link>
+        <updated>2022-08-17T07:27:50.000Z</updated>
+        <content type="html"><![CDATA[<p>年轻人，如果你真的爱你的社区、国家、世界，那不要总是牢骚、抱怨、愤怒，进入这个社会，找到热爱的事业，在一个对他人有价值的岗位上改变这个世界</p>
+<figure data-type="image" tabindex="1"><img src="https://img.1e1.top/picture/202112231534453.jpg" alt="这个世界会好吗" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[图床]]></title>
+        <id>https://1e1.top/post/tuchuang/</id>
+        <link href="https://1e1.top/post/tuchuang/">
+        </link>
+        <updated>2022-08-17T06:52:20.000Z</updated>
+        <summary type="html"><![CDATA[<p>cf图床搭建后的食用方法😋</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>cf图床搭建后的食用方法😋</p>
+<!-- more -->
+<blockquote>
+<p>搭建教程:<a href="https://1e1.top/post/cloudflare-workers-fan-dai-shi-yong-github-cang-ku-da-jian-tu-chuang/">Cloudflare Workers 反代使用 GitHub 仓库搭建图床</a></p>
+</blockquote>
+<h2 id="食用方法">食用方法😋</h2>
+<ol>
+<li>去Github创建一个存储图片资源的公开仓库</li>
+<li>上传图片，建议用<a href="https://desktop.github.com/">GitHub Desktop</a>上传比较方便</li>
+<li>访问
+<ul>
+<li>格式：https://二级域名.主域名/(图片仓库文件夹，如果没有文件夹忽略这段)/文件名称.文件格式</li>
+<li>例:  https://img.1e1.top/picture/19XvO7el_400x400.jpg</li>
+</ul>
+</li>
+<li>测速<br>
+<img src="https://img.1e1.top/picture/1e1top/22817/20220817151536.png" alt="https://img.1e1.top/picture/1e1top/22817/20220817151536.png" loading="lazy"></li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Cloudflare Workers 反代使用 GitHub 仓库搭建图床]]></title>
+        <id>https://1e1.top/post/cloudflare-workers-fan-dai-shi-yong-github-cang-ku-da-jian-tu-chuang/</id>
+        <link href="https://1e1.top/post/cloudflare-workers-fan-dai-shi-yong-github-cang-ku-da-jian-tu-chuang/">
+        </link>
+        <updated>2022-08-16T13:52:13.000Z</updated>
+        <summary type="html"><![CDATA[<p>Cloudflare Workers 反代使用 GitHub 仓库搭建图床<br>
+CF创建并开启Workers这里不再赘述了，如果不会还请自行搜索😘</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Cloudflare Workers 反代使用 GitHub 仓库搭建图床<br>
+CF创建并开启Workers这里不再赘述了，如果不会还请自行搜索😘</p>
+<!-- more -->
+<h2 id="1-cloudflare-创建-workers">1  Cloudflare 创建 Workers</h2>
+<figure data-type="image" tabindex="1"><img src="https://img.1e1.top/picture/1e1top/22816/20220816220023.png" alt="01" loading="lazy"></figure>
+<h2 id="2-编写反代用的-worker-代码">2  编写反代用的 Worker 代码</h2>
+<p>Cloudflare Worker 中的代码用 JS 写就行，同时还有很多现成的好用的方法，具体的学习请参照官方文档：Cloudflare Workers documentation<br>
+我这里要实现反代功能，那么就只需要将来源链接中的域名修改成 raw.githubusercontent.com，接着访问一下 GitHub 文件的内容并返回即可，直接上具体实现的代码：</p>
+<pre><code class="language-javascript">addEventListener(&quot;fetch&quot;, event =&gt; {
+  event.respondWith(handleRequest(event.request))
+})
+
+async function handleRequest(request) {
+  // Cloudflare Workers 分配的域名
+  cf_worker_host = &quot;img.yiktt.workers.dev&quot;;
+  // 自定义的域名
+  origin_host = &quot;img.1e1.top&quot;;
+  // GitHub 仓库文件地址
+  github_host = &quot;raw.githubusercontent.com/yiktt/imgs/master&quot;;
+  // 替换 2 次以同时兼容 Worker 来源和域名来源
+  url = request.url.replace(cf_worker_host, github_host).replace(origin_host, github_host);
+  return fetch(url);
+}
+</code></pre>
+<p>注意上面我除了 Cloudflare Workers 分配的域名我还添加了自定义域名，你可以自行决定是否加上。<br>
+确定没问题之后点击保存并部署即可。</p>
+<h2 id="3-结束-测试">3  结束  测试</h2>
+<p>部署完成后，你已经可以通过 Cloudflare Workers 分配给你的域名访问你 GitHub 仓库里的图片了，而且默认就是套了 CF 的 CDN 的，在境内也能访问顶多就是速度会慢一点，如图：<br>
+<img src="https://img.1e1.top/picture/19XvO7el_400x400.jpg" alt="02" loading="lazy"></p>
+]]></content>
+    </entry>
+</feed>
