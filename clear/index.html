@@ -13,7 +13,9 @@
 
     <link rel="shortcut icon" href="favicon.ico">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/3.0.0/material-components-web.min.css" integrity="sha256-sljrYCrrEK55ECAXF6gHxng8RLXHZYpsblwhH4P7bsM=" crossorigin="anonymous" />
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/3.0.0/material-components-web.min.css" integrity="sha256-sljrYCrrEK55ECAXF6gHxng8RLXHZYpsblwhH4P7bsM=" crossorigin="anonymous" />-->
+	<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/material-components/material-components-web@3.0.0/packages/material-components-web/material-components-web.scss" crossorigin="anonymous" />-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-components-web@3.0.0/dist/material-components-web.min.css" crossorigin="anonymous" />
 
     <style>
         body {
@@ -247,14 +249,15 @@
     </style>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/necolas/normalize.css@master/normalize.css" crossorigin="anonymous" />
 
 </head>
 
 <body>
     <div class="ribbon mdc-elevation--z4"></div>
     <main class="main-content mdc-typography mdc-elevation--z8">
-        <script async src="https://jcksb/carbon.js?serve=CK7I6K3E&amp;placement=wwwrichie-bendallml" id="_carbonads_js"></script>
+        <!--<script async src="https://jcksb/carbon.js?serve=CK7I6K3E&amp;placement=wwwrichie-bendallml" id="_carbonads_js"></script>-->
         <button class="theme-toggle mdc-fab mdc-fab--mini" aria-label="Toggle Theme Settings" data-mdc-auto-init="MDCRipple">
             <svg class="theme-toggle__svg mdc-fab__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path fill="none" d="M0 0h24v24H0V0z" />
@@ -263,7 +266,8 @@
         </button>
         <h1 class="mdc-typography--headline2">流量消失器</h1>
         <p class="mdc-typography--body1">多线程消耗流量 机场佬直呼内行.</p>
-        <br>
+        <a href="https://laomoe.com">欢迎访问我的博客 👉 laomoe.com </a>
+        <br></br>
         <div class="option__unlimited mdc-switch mdc-switch--checked" data-mdc-auto-init="MDCSwitch">
             <div class="mdc-switch__track"></div>
             <div class="mdc-switch__thumb-underlay">
@@ -274,7 +278,7 @@
         </div>
         <label class="mdc-switch__label" for="option--unlimited-input">无限制的跑下去</label>
         <div class="option__mbs mdc-text-field mdc-text-field--outlined mdc-text-field--disabled" data-mdc-auto-init="MDCTextField">
-            <input type="number" min="1" id="goal" value="1" class="mdc-text-field__input" disabled>
+            <input type="number" min="1" id="goal" value="100" class="mdc-text-field__input" disabled>
             <div class="mdc-notched-outline">
                 <div class="mdc-notched-outline__leading"></div>
                 <div class="mdc-notched-outline__notch">
@@ -286,7 +290,7 @@
         <br>
         <br>
         <p class="option__threads-title mdc-typography--body2">线程（较高浪费速度更快，较低浪费精度更高）</p>
-        <div class="option__threads mdc-slider mdc-slider--discrete mdc-slider--display-markers" tabindex="0" role="slider" aria-valuemin="1" aria-valuemax="32" aria-valuenow="1" aria-label="Select Value" data-mdc-auto-init="MDCSlider">
+        <div class="option__threads mdc-slider mdc-slider--discrete mdc-slider--display-markers" tabindex="0" role="slider" aria-valuemin="1" aria-valuemax="32" aria-valuenow="8" aria-label="Select Value" data-mdc-auto-init="MDCSlider">
             <div class="mdc-slider__track-container">
                 <div class="mdc-slider__track"></div>
                 <div class="mdc-slider__track-marker-container"></div>
@@ -342,7 +346,29 @@
                 <span class="output__time mdc-list-item__secondary-text">0 seconds</span>
                 </span>
             </li>
+            
+            <li class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+                <svg class="mdc-list-item__graphic" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="none" d="M0 0h24v24H0V0z" />
+                    <path d="" />
+                </svg>
+                <span class="mdc-list-item__text">
+      <span class="mdc-list-item__primary-text">ip地址</span>
+                
+                
+                        <iframe src="http://23.80.5.90/ip.php" width="100%" height="30" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"> 
+</iframe> 
+
+
+                </span>
+            </li>
+            
+            
         </ul>
+        
+
+
+
         <div class="snackbar__done mdc-snackbar mdc-snackbar--leading" data-mdc-auto-init="MDCSnackbar">
             <div class="mdc-snackbar__surface">
                 <div class="mdc-snackbar__label" role="status" aria-live="polite">
@@ -362,11 +388,16 @@
         </div>
     </div>
     <!--[if lt IE 9]> <script async src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js" integrity="sha256-1eSvllkLdrfxD6G8RGF9h+mQuD93Af5+GdPBMNc7uMQ=" crossorigin="anonymous"></script> <![endif]-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/3.0.0/material-components-web.min.js" integrity="sha256-EsosgypLTQhhyhYTy8y+WbACaQsmG2Tpvoq1186sISE=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/stopwatchjs@0.1.1/stopwatch.min.js" integrity="sha384-YVHQrJc4DzNQAtLqXkQ+16NBc9BuQSEWt5At/0hgASbDJ+659CMhYJeuh2EHtqJ8" crossorigin="anonymous"></script>
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/humanize-duration/3.20.0/humanize-duration.min.js" integrity="sha256-/Z/Xzo8lduQxHd+muddFmswME6zBTWH+UGYdNEE0upo=" crossorigin="anonymous"></script>
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/filesize/4.1.2/filesize.min.js" integrity="sha256-znN6cqu0LRpYU05qFKU85KS24giwC5kI6KTtLypmans=" crossorigin="anonymous"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/3.0.0/material-components-web.min.js" integrity="sha256-EsosgypLTQhhyhYTy8y+WbACaQsmG2Tpvoq1186sISE=" crossorigin="anonymous"></script>-->
+	<script src="https://cdn.jsdelivr.net/npm/material-components-web@3.0.0/dist/material-components-web.min.js" crossorigin="anonymous"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!--<script src="https://unpkg.com/stopwatchjs@0.1.1/stopwatch.min.js" integrity="sha384-YVHQrJc4DzNQAtLqXkQ+16NBc9BuQSEWt5At/0hgASbDJ+659CMhYJeuh2EHtqJ8" crossorigin="anonymous"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/stopwatchjs@0.1.1/stopwatch.min.js" crossorigin="anonymous"></script>
+    <!--<script async src="https://cdnjs.cloudflare.com/ajax/libs/humanize-duration/3.20.0/humanize-duration.min.js" integrity="sha256-/Z/Xzo8lduQxHd+muddFmswME6zBTWH+UGYdNEE0upo=" crossorigin="anonymous"></script>-->
+    <script async src="https://cdn.jsdelivr.net/gh/EvanHahn/HumanizeDuration.js@3.20.0/humanize-duration.min.js" integrity="sha256-/Z/Xzo8lduQxHd+muddFmswME6zBTWH+UGYdNEE0upo=" crossorigin="anonymous"></script>
+    <!--<script async src="https://cdnjs.cloudflare.com/ajax/libs/filesize/4.1.2/filesize.min.js" integrity="sha256-znN6cqu0LRpYU05qFKU85KS24giwC5kI6KTtLypmans=" crossorigin="anonymous"></script>-->
+    <script async src="https://cdn.jsdelivr.net/gh/avoidwork/filesize.js@4.1.2/lib/filesize.min.js" integrity="sha256-znN6cqu0LRpYU05qFKU85KS24giwC5kI6KTtLypmans=" crossorigin="anonymous"></script>
 
     <script>
         mdc.autoInit();
@@ -417,7 +448,7 @@
         var threads = 8;
         var time = 0;
         var goal = 0;
-        var chunk = 1500000;
+        var chunk = 930816;
         var stopped = false;
         var formatSize = function(size) {
             var o = filesize(size, {
@@ -457,7 +488,7 @@
                 }
             }
             if (running == true)
-                xhr[id] = $.get("/data-waster-dummy?" + Math.random(), function() {
+                xhr[id] = $.get("https://ossweb-img.qq.com/upload/adw/image/752/20211219/f4b5919ec683f49d8532cef90644b9ac.jpeg?" + Math.random(), function() {
                     return download(id);
                 });
         };
