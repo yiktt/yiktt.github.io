@@ -11,7 +11,8 @@ body{
     float: right;
     padding: 1.5em;
     max-width: 35em;
-    background: url(https://cdn.staticaly.com/gh/yiktt/cdn/master/picture/1645764021-261f54f8295XXXV-scaled.jpg) center center/cover fixed no-repeat;
+	background: url(https://p0.meituan.net/dpplatform/2f4c511bf17510d5dc12c97bca863e08743742.jpg) center center/cover fixed no-repeat;
+    /* background: url(https://cdn.staticaly.com/gh/yiktt/cdn/master/picture/1645764021-261f54f8295XXXV-scaled.jpg) center center/cover fixed no-repeat; */
 }
 header{
     text-align: right;
