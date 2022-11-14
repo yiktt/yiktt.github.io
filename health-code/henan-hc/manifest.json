@@ -10,7 +10,7 @@
   ],
   "id": "ilovexjp-henan-hc-simulator",
   "start_url": ".",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
   "description": "豫康码模拟"
 }

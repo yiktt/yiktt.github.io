@@ -10,7 +10,7 @@
   ],
   "id": "ilovexjp-hunan-hc-simulator",
   "start_url": ".",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
   "description": "湖南居民健康卡模拟"
 }

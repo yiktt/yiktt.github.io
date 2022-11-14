@@ -10,7 +10,7 @@
   ],
   "id": "ilovexjp-zhejiang-hc-simulator",
   "start_url": ".",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
   "description": "浙江健康码模拟"
 }

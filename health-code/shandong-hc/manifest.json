@@ -10,7 +10,7 @@
   ],
   "id": "ilovexjp-shandong-hc-simulator",
   "start_url": ".",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
   "description": "山东健康通行码模拟"
 }

@@ -10,7 +10,7 @@
   ],
   "id": "ilovexjp-fujian-hc-simulator",
   "start_url": ".",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
   "description": "福建健康码模拟"
 }

@@ -10,7 +10,7 @@
   ],
   "id": "ilovexjp-tfjkt-simulator",
   "start_url": ".",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
   "description": "四川天府健康通模拟"
 }

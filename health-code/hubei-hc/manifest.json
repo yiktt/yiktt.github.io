@@ -3,14 +3,14 @@
   "name": "湖北健康码",
   "icons": [
     {
-      "src": "static/QRlogo.png",
+      "src": "static/logo.png",
       "type": "image/png",
-      "sizes": "676x676"
+      "sizes": "460x460"
     }
   ],
   "id": "ilovexjp-hubei-hc-simulator",
   "start_url": ".",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
   "description": "湖北健康码模拟"
 }

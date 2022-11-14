@@ -10,7 +10,7 @@
   ],
   "id": "ilovexjp-jkb-simulator",
   "start_url": ".",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
   "description": "北京健康宝模拟"
 }

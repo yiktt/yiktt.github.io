@@ -10,7 +10,7 @@
   ],
   "id": "ilovexjp-index",
   "start_url": ".",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
-  "description": "健康码模拟目录"
+  "description": "健康码模拟"
 }
