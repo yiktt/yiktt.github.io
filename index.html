@@ -11,16 +11,170 @@
   <meta property="og:description" content="风从远方来。">
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Ubuntu+Mono:400" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yiktt/yiktt.github.io/main.css">
+  <link rel="stylesheet" href="main.css">
   <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --accent-color: #1a91db;
+      --accent-hover: #1782c4;
+      --border-color: #eeeeee;
+      --surface-color: #f5f5f5;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --accent-color: #5ab0f0;
+      --accent-hover: #7cc4f5;
+      --border-color: #2c2c2c;
+      --surface-color: #1e1e1e;
+      --shadow-color: rgba(0, 0, 0, 0.4);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    a {
+      color: var(--text-color);
+      border-bottom-color: var(--accent-color);
+      transition: color 0.3s ease, border-bottom-color 0.3s ease;
+    }
+
+    a:hover, a:focus, a:active {
+      color: var(--accent-color);
+    }
+
+    .homepage .header-menu:after {
+      background-color: var(--border-color);
+    }
+
+    .strapline h2, .strapline p {
+      color: var(--text-color);
+    }
+
     #hitokoto {
       opacity: 0;
       transition: opacity 0.8s ease-in-out;
     }
+
     #hitokoto.visible {
       opacity: 1;
     }
+
+    .theme-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background-color: var(--surface-color);
+      box-shadow: 0 2px 10px var(--shadow-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.4s ease, box-shadow 0.4s ease, transform 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 16px var(--shadow-color);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
+    }
+
+    .theme-toggle svg {
+      width: 22px;
+      height: 22px;
+      transition: opacity 0.3s ease, transform 0.4s ease;
+    }
+
+    .theme-toggle .icon-sun {
+      display: none;
+      color: #f5a623;
+    }
+
+    .theme-toggle .icon-moon {
+      display: block;
+      color: var(--accent-color);
+    }
+
+    [data-theme="dark"] .theme-toggle .icon-sun {
+      display: block;
+    }
+
+    [data-theme="dark"] .theme-toggle .icon-moon {
+      display: none;
+    }
+
+    .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: none;
+      color: var(--text-color);
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    .social-icons a:hover {
+      color: var(--accent-color);
+      transform: scale(1.15);
+    }
+
+    .social-icons a:active {
+      transform: scale(0.95);
+    }
+
+    .social-icons svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .header-logo {
+      width: 64px;
+      height: 64px;
+      margin: 0 2rem;
+      vertical-align: middle;
+      color: var(--text-color);
+      transition: color 0.4s ease;
+    }
+
+    @media (max-width: 400px) {
+      .header-logo {
+        width: 32px;
+        height: 32px;
+        margin: 0 0.5rem;
+      }
+    }
   </style>
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme');
+      var theme;
+      if (stored === 'dark' || stored === 'light') {
+        theme = stored;
+      } else {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 </head>
 <body class="homepage">
   <header>
@@ -29,7 +183,19 @@
         <div class="col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
           <ul class="header-menu">
             <li><a href="#">首页</a></li>
-            <li><img src="https://img.eday.eu.org/img/yiktt.github.io/removebg-preview.png" alt="logo"></li>
+            <li>
+              <svg class="header-logo" viewBox="0 0 64 64" fill="currentColor" role="img" aria-label="韭菜 logo">
+                <title>韭菜</title>
+                <!-- 垃圾桶 -->
+                <path d="M8 30h2v24a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V30h2v-4H8v4zm4 0h12v22H12V30z"/>
+                <!-- 投放物（小圆） -->
+                <circle cx="20" cy="20" r="3.5"/>
+                <!-- 人物：头部 -->
+                <circle cx="44" cy="8" r="5.5"/>
+                <!-- 人物：躯干与手臂 -->
+                <path d="M44 15c-1.5 0-3 .8-3.8 2.2l-8.5 13.2a2.5 2.5 0 0 0 .7 3.4 2.5 2.5 0 0 0 3.5-.7l5.1-8v22.9a3 3 0 0 0 6 0V32h1v16a3 3 0 0 0 6 0V25c0-5.5-3.5-10-10-10z"/>
+              </svg>
+            </li>
             <li><a href="" target="_blank">文字</a></li>
           </ul>
         </div>
@@ -51,11 +217,26 @@
                 <p>韭零后，不吃韭菜星人。</p>
                 <p>风从<a href="" target="_blank">远方</a>来。</p>
                 <p id="hitokoto"></p>
-                <p>
-                  <a href="mailto:yiktt@proton.me" target="_blank"><img src="https://img.eday.eu.org/img/yiktt.github.io/185078_mail_email_icon.png" style="height:30px;" alt="email"></a>
-                  <a href="https://github.com/yiktt" target="_blank"><img src="https://img.eday.eu.org/img/yiktt.github.io/211903_github_social_icon.png" style="height:30px;" alt="github"></a>
-                  <a href="https://t.me/SanRenBot" target="_blank"><img src="https://img.eday.eu.org/img/yiktt.github.io/9027140_telegram_logo_thin_icon.png" style="height:30px;" alt="telegram"></a>
-                </p>
+                <div class="social-icons">
+                  <a href="mailto:yiktt@proton.me" aria-label="发送邮件">
+                    <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true">
+                      <title>Email</title>
+                      <path d="M2 4a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h20a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2zm1.2 2h17.6l-8.8 6.6L3.2 6zm-1.2 2.1 8.4 6.3a1 1 0 0 0 1.2 0l8.4-6.3V17H2V8.1z"/>
+                    </svg>
+                  </a>
+                  <a href="https://github.com/yiktt" target="_blank" rel="noopener" aria-label="GitHub 主页">
+                    <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true">
+                      <title>GitHub</title>
+                      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                    </svg>
+                  </a>
+                  <a href="https://t.me/SanRenBot" target="_blank" rel="noopener" aria-label="Telegram 频道">
+                    <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true">
+                      <title>Telegram</title>
+                      <path d="M21.94 4.03a1.5 1.5 0 0 0-2.04-1.68L2.7 8.82c-1.44.56-1.35 2.63.13 3.06l4.39 1.28 1.66 5.31c.4 1.28 2.06 1.6 2.9.56l2.4-2.98 4.42 3.24c1.06.78 2.56.2 2.82-1.1l2.52-14.16zM9.4 13.06l8.6-5.36c.4-.25.82.3.47.62l-6.86 6.37a2 2 0 0 0-.6 1.1l-.36 2.34c-.05.33-.52.37-.62.05l-1.06-3.4a1 1 0 0 1 .43-1.72z"/>
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -63,6 +244,23 @@
       </div>
     </div>
   </main>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="切换白天/黑夜模式">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
 
   <script>
     (function () {
@@ -84,6 +282,23 @@
         .finally(function () {
           el.classList.add('visible');
         });
+    })();
+
+    (function () {
+      var toggle = document.getElementById('themeToggle');
+
+      toggle.addEventListener('click', function () {
+        var current = document.documentElement.getAttribute('data-theme');
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+        if (!localStorage.getItem('theme')) {
+          document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        }
+      });
     })();
   </script>
 </body>
